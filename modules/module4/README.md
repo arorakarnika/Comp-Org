@@ -1,8 +1,10 @@
 # Notes
 
 - Use `make <program_name>` e.g. `make printName` to create the executable
-- vars contain a reference, identifier and a value
-
+- Vars contain a reference, identifier and a value
+- By passing in the address of a variable instead of its value, it can be changed
+- `BL <function_name>` branches and links the function for the program to use. e.g. `BL scanf`
+  
 **Components of a program**
 
 ```
