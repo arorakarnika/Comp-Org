@@ -23,9 +23,9 @@ main:
     # Print the float
     LDR r0, =formatString
     LDR r1, =inFloat
-    LDR r2, =outFloat
-    FLDS s0, [r1, #0]
-    FSTS s0, [r2, #0]
+    VLDR s0, [r1]
+    // FLDS s0, [r1, #0]
+    //FSTS s0, [r2, #0]
     BL printf
 
     # pop stack
@@ -37,5 +37,4 @@ main:
     formatf: .asciz "%f"
     formatString: .asciz "Here is a float: %f\n"
     inFloat: .float 0.0
-    outFloat: .float 0.0
 
