@@ -17,13 +17,15 @@ main:
 
     # Read in user inputted float number
     LDR r0, =formatf
-    LDR r1, =numFloat
+    LDR r1, =inFloat
     BL scanf   
 
     # Print the float
     LDR r0, =formatString
-    LDR r1, =numFloat
-    LDR r1, [r1, #0]
+    LDR r1, =inFloat
+    LDR r2, =outFloat
+    FLDS s0, [r1, #0]
+    FSTS s0, [r2, #0]
     BL printf
 
     # pop stack
@@ -33,6 +35,7 @@ main:
 .data
     floatPrompt: .asciz "Please enter a float: \n"
     formatf: .asciz "%f"
-    formatString: .asciz "Here is a float: %f"
-    numFloat: .word 0
+    formatString: .asciz "Here is a float: %f\n"
+    inFloat: .float 0.0
+    outFloat: .float 0.0
 
