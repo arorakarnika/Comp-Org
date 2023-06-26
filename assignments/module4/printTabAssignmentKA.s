@@ -23,6 +23,7 @@ main:
     LDR r0, =output1
     LDR r1, =num1
     LDR r1, [r1, #0]
+    BL printf
 
     # pop stack and return
     LDR lr, [sp, #0]

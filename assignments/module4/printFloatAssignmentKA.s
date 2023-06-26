@@ -34,5 +34,5 @@ main:
     floatPrompt: .asciz "Please enter a float: \n"
     formatf: .asciz "%f"
     formatString: .asciz "Here is a float: %f"
-    numFloat: .word 0.0
+    numFloat: .word 0
 

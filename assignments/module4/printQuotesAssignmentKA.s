@@ -19,4 +19,4 @@ main:
     ADD sp, sp, #4
     MOV pc, lr
 .data
-    quoteString: .asciz "The program name is ""printQuotesAssignment"""
+    quoteString: .asciz "The program name is \"printQuotesAssignment\"\n"

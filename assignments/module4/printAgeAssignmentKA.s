@@ -27,13 +27,13 @@ main:
 
     # Pop the stack and return
     LDR lr, [sp, #0]
-    ADD sp, sp. #4
+    ADD sp, sp, #4
     MOV pc, lr
 
 .data
     agePrompt: .asciz "Enter your age: \n"
     formatAge: .asciz "%d"
     age1: .word 0
-    output: .asciz "Your age is %d"
+    output: .asciz "Your age is %d\n"
 
 
