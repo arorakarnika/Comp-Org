@@ -24,7 +24,7 @@ main:
     LDR r0, =formatString
     LDR r1, =inFloat
     VLDR s0, [r1] // Load float from r1 into s0
-	vcvt.f64.f32 d7, s0  // convert value at s0 to double in d7
+    vcvt.f64.f32 d7, s0  // convert value at s0 to double in d7
     vmov r1, r2, d7 // move double in d7 into r1 and r2 (need two registers for a double)
     BL printf
 
