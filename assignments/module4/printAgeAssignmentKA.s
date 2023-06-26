@@ -1,5 +1,7 @@
 # Name: Karnika Arora
-# A program to ask a user for their age and output it
+# Module 4 Assignment
+# 1 - Ask a user for their age, and output it.
+# June 25, 2023
 
 .text
 .global main
