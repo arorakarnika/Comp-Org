@@ -26,9 +26,9 @@ main:
     MOV r1, #12
     BL __aeabi_idivmod // will store quotient in r0, remainder in r1
 
-    # Get result and print
+    # Get result and print 
+    MOV r2, r1 // store remainder in r2
     MOV r1, r0 // store quotient in r1
-    LDR r2, r1 // store remainder in r2
     LDR r0, =outStr
     BL printf
 
