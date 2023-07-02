@@ -18,24 +18,23 @@ main:
 
     # Read in the entered temperature, can be a float
     LDR r0, =formatInput
-    LDR r1, =inFloat
+    LDR r1, =inTemp
     BL scanf
 
     # Convert the input to Celsius
     
     # subtract 32 from input 
-    LDR r0, =tempResult
-    LDR r1, =inFloat
-    VLDR s0, [r1] // Load float from r1 into s0
-    SUB r0, r1, #32
+    LDR r1, =inTemp
+    LDR r2, [r1] // Load the integer value into r2 from the address at r1
+    SUB r2, r2, #32 // subtract 32 from the int and store the result in r2
 
     # multiply by 5
-    MOV r1, r0
-    MOV r2, #5
-    MUL r0, r1, r2
+    MOV r1, r2
+    MOV r3, #5
+    MUL r2, r1, r3
 
     # divide by 9
-    LDR r0, =tempResult  
+    MOV r0, r2
     MOV r1, #9
     BL __aeabi_idiv    
 
@@ -44,15 +43,13 @@ main:
     LDR r0, =resultOutput
     BL printf
 
-
     # Pop the stack and return
     LDR lr, [sp, #0] // retrieve link register from the stack
     ADD sp, sp, #4 // put the stack pointer back to where it was when we entered the method
     MOV pc, lr // Move the link register into the pc - so the program counter will receive the link register, and the program will return back to the function that called it
 .data
     inputPrompt: .asciz "Enter a temperature (in Fahrenheit) you'd like to convert to Celsius:\n"
-    formatInput: .asciz "%f"
-    inFloat: .float 0.0
-    tempResult: .float 0.0
-    resultOutput: .asciz "The temperature in Celsius is %f\n"
+    formatInput: .asciz "%d"
+    inTemp: .word 0
+    resultOutput: .asciz "The temperature in Celsius is %d\n"
     
