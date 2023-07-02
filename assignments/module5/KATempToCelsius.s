@@ -16,7 +16,7 @@ main:
     LDR r0, =inputPrompt
     BL printf
 
-    # Read in the entered temperature, can be a float
+    # Read in the entered temperature
     LDR r0, =formatInput
     LDR r1, =inTemp
     BL scanf
