@@ -45,8 +45,8 @@ main:
     MOV pc, lr 
 
 .data
-    prompt1: .asciz "Enter a number in feet followed by a number in inches, separated by a comma:\n"
-    formatStr: .asciz "%d,%d"
+    prompt1: .asciz "Enter a number in feet followed by a number in inches, using the format 5'5\":\n"
+    formatStr: .asciz "%d'%d\""
     inFeet: .word 0
     inInches: .word 0
     outStr: .asciz "The value in inches is %d\n"
