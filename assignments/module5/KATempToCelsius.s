@@ -9,8 +9,8 @@
 .global main
 main:
     # Push the stack
-    SUB sp, sp, #4 # Move the stack pointer (sp register) 4 bytes from the register to make space for the link register
-    STR lr, [sp, #0] # Store the link register at an offset of 0 from the stack pointer
+    SUB sp, sp, #4 // Move the stack pointer (sp register) 4 bytes from the register to make space for the link register
+    STR lr, [sp, #0] // Store the link register at an offset of 0 from the stack pointer
 
     # Print a prompt for the temperature
     LDR r0, =inputPrompt
@@ -45,9 +45,9 @@ main:
 
 
     # Pop the stack and return
-    LDR lr, [sp, #0] # retrieve link register from the stack
-    ADD sp, sp, #4 # put the stack pointer back to where it was when we entered the method
-    MOV pc, lr # Move the link register into the pc - so the program counter will receive the link register, and the program will return back to the function that called it
+    LDR lr, [sp, #0] // retrieve link register from the stack
+    ADD sp, sp, #4 // put the stack pointer back to where it was when we entered the method
+    MOV pc, lr // Move the link register into the pc - so the program counter will receive the link register, and the program will return back to the function that called it
 .data
     inputPrompt: .asciz "Enter a temperature (in Fahrenheit) you'd like to convert to Celsius:\n"
     formatInput: .asciz "%f"
