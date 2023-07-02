@@ -27,11 +27,12 @@ main:
     LDR r0, =tempResult
     LDR r1, =inFloat
     VLDR s0, [r1] // Load float from r1 into s0
-    SUB r0, s0, #32
+    SUB r0, r1, #32
 
     # multiply by 5
-    LDR r0, =tempResult
-    MUL r0, r0, #5
+    MOV r1, r0
+    MOV r2, #5
+    MUL r0, r1, r2
 
     # divide by 9
     LDR r0, =tempResult  
