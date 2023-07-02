@@ -1,3 +1,6 @@
+# Name: Karnika Arora
+# Module 5 Assignment
+# Date: 07/02/2023
 # 4 - Read an input number and using left logical shifts and add instructions  
 # multiply that number by 10 and print out the result.
 # * (Extra Credit 5 points) - In a normal swap a temporary variable is needed,
