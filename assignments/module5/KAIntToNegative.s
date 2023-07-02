@@ -23,7 +23,7 @@ main:
     # Do a Two's Complement operation to get the negative value
     # First, invert the bits aka get the ones complement
     LDR r1, =inInt
-    MOV r2, [r1]
+    LDR r2, [r1]
     MVN r0, r2
 
     # Add 1 to get the two's complement
