@@ -40,8 +40,8 @@ main:
 
 
     # print result
-    LDR r0, =resultOutput
     MOV r1, r0 // move the result into r1
+    LDR r0, =resultOutput
     BL printf
 
     # Pop the stack and return
