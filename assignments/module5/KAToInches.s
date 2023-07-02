@@ -24,8 +24,9 @@ main:
 
     # Convert feet to inches
     LDR r1, =inFeet
-    LDR r2, [r2]
-    MUL r0, r2, #12
+    LDR r2, [r1]
+    MOV r3, #12
+    MUL r0, r2, r3
 
     # Add inches to the converted value to get final result
     MOV r1, r0
@@ -45,7 +46,7 @@ main:
 
 .data
     prompt1: .asciz "Enter a number in feet followed by a number in inches, separated by a comma:\n"
-    formatStr: .asciz "%d, %d"
+    formatStr: .asciz "%d,%d"
     inFeet: .word 0
     inInches: .word 0
     outStr: .asciz "The value in inches is %d\n"
