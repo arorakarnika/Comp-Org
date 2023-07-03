@@ -27,8 +27,10 @@ main:
     BL __aeabi_idivmod // will store quotient in r0, remainder in r1
 
     # Get result and print 
-    MOV r2, r1 // store remainder in r2
-    MOV r1, r0 // store quotient in r1
+    MOV r3, r1 // store remainder in r3
+    MOV r2, r0 // store quotient in r2
+    LDR r0, =inInches
+    LDR r1, [r0]
     LDR r0, =outStr
     BL printf
 
@@ -38,7 +40,7 @@ main:
     MOV pc, lr 
 
 .data
-    prompt1: .asciz "Enter a number in inches:\n"
+    prompt1: .asciz "Enter a number in inches: "
     formatStr: .asciz "%d"
     inInches: .word 0
-    outStr: .asciz "The value in feet and inches is %d'%d\"\n"
+    outStr: .asciz "The value of %d in feet and inches is %d'%d\"\n"

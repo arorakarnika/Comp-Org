@@ -40,7 +40,7 @@ main:
     MOV pc, lr 
 
 .data
-    prompt1: .asciz "Enter an integer:\n"
+    prompt1: .asciz "Enter an integer: "
     formatStr: .asciz "%d"
     inputNum: .word 0
     outStr: .asciz "The integer %d multiplied by 10 is: %d\n"

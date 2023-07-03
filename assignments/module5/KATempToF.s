@@ -41,7 +41,9 @@ main:
 
 
     # print result
-    MOV r1, r0 // move the result into r1
+    MOV r2, r0 // move the result into r2
+    LDR r0, =inTemp
+    LDR r1, [r1]
     LDR r0, =resultOutput
     BL printf
 
@@ -50,7 +52,7 @@ main:
     ADD sp, sp, #4 // put the stack pointer back to where it was when we entered the method
     MOV pc, lr // Move the link register into the pc - so the program counter will receive the link register, and the program will return back to the function that called it
 .data
-    inputPrompt: .asciz "Enter a temperature (in Celsius) you'd like to convert to Fahrenheit:\n"
+    inputPrompt: .asciz "Enter a temperature (in Celsius) you'd like to convert to Fahrenheit: "
     formatInput: .asciz "%d"
     inTemp: .word 0
-    resultOutput: .asciz "The temperature in Fahrenheit is %d\n"
+    resultOutput: .asciz "The temperature %d C in Fahrenheit is %d\n"

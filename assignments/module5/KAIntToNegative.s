@@ -32,7 +32,9 @@ main:
     ADD r0, r1, #1
 
     # print the output
-    MOV r1, r0 
+    MOV r2, r0 
+    LDR r0, =inInt
+    LDR r1, [r0]
     LDR r0, =outStr
     BL printf
 
@@ -41,7 +43,7 @@ main:
     ADD sp, sp, #4 
     MOV pc, lr 
 .data
-    inputPrompt: .asciz "Enter an integer:\n"
+    inputPrompt: .asciz "Enter an integer: "
     formatInput: .asciz "%d"
     inInt: .word 0
-    outStr: .asciz "The negative value of the integer you entered is %d\n"
+    outStr: .asciz "The negative value of the integer you entered (%d)is %d\n"

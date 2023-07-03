@@ -35,7 +35,11 @@ main:
     ADD r0, r1, r3
 
     # Print the final value
-    MOV r1, r0
+    MOV r3, r0
+    LDR r0, =inFeet
+    LDR r1, [r0]
+    LDR r0, =inInches
+    LDR r2, [r0]
     LDR r0, =outStr
     BL printf
 
@@ -45,8 +49,8 @@ main:
     MOV pc, lr 
 
 .data
-    prompt1: .asciz "Enter a number in feet followed by a number in inches, using the format 5'5\":\n"
+    prompt1: .asciz "Enter a number in feet followed by a number in inches, using the format 5'5\": "
     formatStr: .asciz "%d'%d\""
     inFeet: .word 0
     inInches: .word 0
-    outStr: .asciz "The value in inches is %d\n"
+    outStr: .asciz "The value  %d'%d\" in inches is %d\n"
