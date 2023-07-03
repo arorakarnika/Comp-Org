@@ -2,10 +2,7 @@
 
 # Make all programs in dir
 
-for prog in "$ls *.s"; do
-	[[ $prog =~ (.*).s ]]
-	 ../../make_for_gdb.sh ${BASH_REMATCH[1]}
-done
+echo `make All`
 
 # Run tests
 ../../runTests.sh -n KATempToCelsius -t "90, 95, 104"
