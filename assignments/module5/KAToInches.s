@@ -18,28 +18,28 @@ main:
 
     # Read in the input values
     LDR r0, =formatStr
-    LDR r1, =inFeet
+    LDR r1, =inFeet // input will be in the format 6'5", giving us two values for inFeet and inInches
     LDR r2, =inInches
     BL scanf
 
     # Convert feet to inches
     LDR r1, =inFeet
     LDR r2, [r1]
-    MOV r3, #12
+    MOV r3, #12 // move the number 12 into r3
     MUL r0, r2, r3
 
     # Add inches to the converted value to get final result
-    MOV r1, r0
+    MOV r1, r0 // the result from MUL earlier is in r0, move it into r1
     LDR r2, =inInches
     LDR r3, [r2]
-    ADD r0, r1, r3
+    ADD r0, r1, r3 // our final result is now in r0
 
     # Print the final value
-    MOV r3, r0
+    MOV r3, r0 // free up r0 since printf requires the formatted string to be in r0, final val in r3
     LDR r0, =inFeet
-    LDR r1, [r0]
+    LDR r1, [r0] // r1 has our original input value for inFeet
     LDR r0, =inInches
-    LDR r2, [r0]
+    LDR r2, [r0] // r2 has our input in inches
     LDR r0, =outStr
     BL printf
 
