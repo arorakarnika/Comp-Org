@@ -10,3 +10,4 @@ echo `make All`
 ../../runTests.sh -n KAIntToNegative -t "5, 45, 10"
 ../../runTests.sh -n KAToInches -t "6'2\",5'5\",4'11\""
 ../../runTests.sh -n KAInchesToFeet -t "72, 65, 62"
+../../runTests.sh -n KAMultiplyByTen -t "3, 4, 6"
