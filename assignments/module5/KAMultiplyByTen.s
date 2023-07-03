@@ -24,13 +24,17 @@ main:
     LDR r1, =inputNum
     BL scanf
 
-    # Multiply by 10 - input is in r1
+    # Multiply by 10
+    LDR r0, =inputNum
+    LDR r1, [r0]
     LSL r2, r1, #3 // shifting by 3 bits = multiplying by 2^3
-    LSL r3, r2, #1
+    LSL r3, r1, #1 // shifting by 1 bit = multiplying by 2
     
-
+    # Add r3 and r2 to get the result of multiplication by 10
+    ADD r4, r2, r3
+    
     # Get result and print - result is in r3
-    MOV r1, r3 // move result into r1
+    MOV r1, r4 // move result into r1
     LDR r0, =outStr
     BL printf
 
