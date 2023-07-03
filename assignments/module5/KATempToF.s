@@ -43,7 +43,7 @@ main:
     # print result
     MOV r2, r0 // move the result into r2
     LDR r0, =inTemp
-    LDR r1, [r1]
+    LDR r1, [r0]
     LDR r0, =resultOutput
     BL printf
 

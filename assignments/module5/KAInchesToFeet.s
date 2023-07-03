@@ -43,4 +43,4 @@ main:
     prompt1: .asciz "Enter a number in inches: "
     formatStr: .asciz "%d"
     inInches: .word 0
-    outStr: .asciz "The value of %d in feet and inches is %d'%d\"\n"
+    outStr: .asciz "The value of %d\" in feet and inches is %d'%d\"\n"

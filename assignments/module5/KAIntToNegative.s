@@ -46,4 +46,4 @@ main:
     inputPrompt: .asciz "Enter an integer: "
     formatInput: .asciz "%d"
     inInt: .word 0
-    outStr: .asciz "The negative value of the integer you entered (%d)is %d\n"
+    outStr: .asciz "The negative value of the integer you entered (%d) is %d\n"
