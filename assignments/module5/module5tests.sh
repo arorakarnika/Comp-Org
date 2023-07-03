@@ -1,7 +1,7 @@
 #!/bin/bash
 # Author: Karnika Arora
-# Make all programs in the current directory
 
+# Make all programs in the current directory
 echo `make All`
 
 # Run tests, runTests.sh should be two directories up from the current directory
