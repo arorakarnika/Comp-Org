@@ -49,9 +49,9 @@ main:
     LDR r1, [r1]
     LDR r2, =outKilometers
     LDR r2, [r2]
-    LDR r3, =inHours
-    LDR r3, [r3]
-    LDR r4, [r4]
+    //LDR r3, =inHours
+    LDR r3, [r4]
+    //LDR r4, [r4]
 
     BL printf
 
@@ -68,4 +68,4 @@ main:
     inHours: .word 0
     outKilometers: .word 0
     outKph: .word 0
-    outStr: .asciz "%d in kilometers is %d. Over %d hours, that is %u kilometers per hour. \n"
+    outStr: .asciz "%d in kilometers is %d. that is %d kilometers per hour. \n"
