@@ -41,7 +41,9 @@ main:
 
 
     // Print result
-    MOV r4, r0 // move the kph value into r4 for the output string format
+    //MOV r4, r0 // move the kph value into r4 for the output string format
+    LDR r4, =outKph
+    STR r0, [r4]
     LDR r0, =outStr
     LDR r1, =inMiles
     LDR r1, [r1]
@@ -49,6 +51,8 @@ main:
     LDR r2, [r2]
     LDR r3, =inHours
     LDR r3, [r3]
+    LDR r4, [r4]
+
     BL printf
 
 
@@ -64,4 +68,4 @@ main:
     inHours: .word 0
     outKilometers: .word 0
     outKph: .word 0
-    outStr: .asciz "%d in kilometers is %d. Over %d hours, that is %d kilometers per hour. \n"
+    outStr: .asciz "%d in kilometers is %d. Over %d hours, that is %u kilometers per hour. \n"
