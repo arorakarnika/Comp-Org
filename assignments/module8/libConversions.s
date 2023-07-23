@@ -54,12 +54,14 @@ kph:
 
     // Convert miles to kilometers using miles2kilometer function
     // The input miles is in r0
-    MOV r2, r1 // move the second input value, hours, into r2
+    LDR r2, =inputHours // move the second input value, hours, into inputHours
+    STR r1, [r2] // Store the second input value (hours) in inputHours
     BL miles2kilometer // result will be in r0
 
     // Divide kilometers by hours
     // hours is the input in r1
-    LDR r1, [sp] // Restore the second input value (hours) from the stack
+    LDR r1, =inputHours // Restore the second input value (hours) from inputHours
+    LDR r1, [r1]
     BL __aeabi_idiv
 
     # Pop the stack and return
@@ -68,4 +70,5 @@ kph:
     MOV pc, lr 
 
 .data
+    inputHours: .word 0
 # END kph
