@@ -1,4 +1,4 @@
-All: main1
+All: mainMilesToKilometersAndKph
 LIB=libConversions.o
 CC=gcc
 

@@ -1,4 +1,4 @@
-# Program Name: main1.s
+# Program Name: mainMilesToKilometersAndKph.s
 # Author: Karnika Arora
 # Date: 07/23/2023
 # Module 8 Assignment
@@ -41,20 +41,13 @@ main:
 
 
     // Print result
-    //MOV r4, r0 // move the kph value into r4 for the output string format
-    LDR r4, =outKph
-    STR r0, [r4]
+    MOV r3, r0 // move the result of kph to r3
     LDR r0, =outStr
     LDR r1, =inMiles
     LDR r1, [r1]
     LDR r2, =outKilometers
     LDR r2, [r2]
-    //LDR r3, =inHours
-    LDR r3, [r4]
-    //LDR r4, [r4]
-
     BL printf
-
 
     # Pop the stack and return
     LDR lr, [sp, #0] 
@@ -67,5 +60,4 @@ main:
     inMiles: .word 0
     inHours: .word 0
     outKilometers: .word 0
-    outKph: .word 0
-    outStr: .asciz "%d in kilometers is %d. that is %d kilometers per hour. \n"
+    outStr: .asciz "%d miles in kilometers is %d. That is %d kilometers per hour. \n"
