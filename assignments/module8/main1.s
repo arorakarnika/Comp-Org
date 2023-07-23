@@ -30,7 +30,7 @@ main:
     // Store the kilometer value in outKilometers
     // It will be printed at the end with the kilometers per hour value
     LDR r1, =outKilometers
-    STR r1, [r0]
+    STR r0, [r1]
 
     // Convert miles and hours to kilometers per hour
     LDR r0, =inMiles
@@ -42,8 +42,11 @@ main:
     MOV r4, r0 // move the kph value into r4 for the output string format
     LDR r0, =outStr
     LDR r1, =inMiles
+    LDR r1, [r1]
     LDR r2, =outKilometers
+    LDR r2, [r2]
     LDR r3, =inHours
+    LDR r3, [r3]
     BL printf
 
 
