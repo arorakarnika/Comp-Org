@@ -2,7 +2,7 @@ All: mainMilesToKilometersAndKph
 LIB=libConversions.o
 CC=gcc
 
-main1: main1.o $(LIB)
+mainMilesToKilometersAndKph: mainMilesToKilometersAndKph.o $(LIB)
 	$(CC) $@.o $(LIB) -g -o $@
 
 .s.o:
