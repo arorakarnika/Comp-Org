@@ -34,7 +34,9 @@ main:
 
     // Convert miles and hours to kilometers per hour
     LDR r0, =inMiles
+    LDR r0, [r0]
     LDR r1, =inHours
+    LDR r1, [r1]
     BL kph
 
 
