@@ -54,10 +54,12 @@ kph:
 
     // Convert miles to kilometers using miles2kilometer function
     // The input miles is in r0
+    MOV r2, r1 // move the second input value, hours, into r2
     BL miles2kilometer // result will be in r0
 
     // Divide kilometers by hours
     // hours is the input in r1
+    MOV r1, r2
     BL __aeabi_idiv
 
     # Pop the stack and return
