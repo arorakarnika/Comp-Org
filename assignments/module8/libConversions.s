@@ -59,7 +59,7 @@ kph:
 
     // Divide kilometers by hours
     // hours is the input in r1
-    MOV r1, r2
+    LDR r1, [sp] // Restore the second input value (hours) from the stack
     BL __aeabi_idiv
 
     # Pop the stack and return
