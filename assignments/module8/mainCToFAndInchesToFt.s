@@ -68,4 +68,4 @@ main:
     inchesInput: .asciz "%d"
     inputInValue: .word 0
     fOutput: .asciz "The temperature %d C in Fahrenheit is %d\n"
-    ftOutput: .asciz "The length %d in in feet is %d ft and %d inches\n"
+    ftOutput: .asciz "The length %d inches in feet is %d ft and %d inches\n"
