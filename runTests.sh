@@ -11,10 +11,6 @@ do
     esac
 done
 shift $((OPTIND -1))
-echo "
------------------------------------- Running $progName with test cases: ${tests[@]} ----------------------------------------------"
-
 for test in "${tests[@]}"; do
     echo $test | ./$progName
 done
-echo "-------------------------------------------- All Tests Complete for $progName -----------------------------------------------------"
