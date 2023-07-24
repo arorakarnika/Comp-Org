@@ -7,7 +7,7 @@ while getopts n:t: flag
 do
  case "${flag}" in
         n) progName=${OPTARG};;
-	t) tests=(${OPTARG});;
+	t) tests=${OPTARG};;
     esac
 done
 shift $((OPTIND -1))
