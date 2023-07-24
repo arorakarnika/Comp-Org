@@ -29,7 +29,7 @@ main:
 
     # Print the result
     MOV r2, r0
-    LDR r0, =fOutput
+    LDR r0, =fahrenheitOutput
     LDR r1, =inTemp
     LDR r1, [r1]
     BL printf
@@ -67,5 +67,5 @@ main:
     inchesPrompt: .asciz "Enter a length (in inches) you'd like to convert to feet: "
     inchesInput: .asciz "%d"
     inputInValue: .word 0
-    fOutput: .asciz "The temperature %d C in Fahrenheit is %d\n"
+    fahrenheitOutput: .asciz "The temperature %d C in Fahrenheit is %d\n"
     ftOutput: .asciz "The length %d inches in feet is %d ft and %d inches\n"

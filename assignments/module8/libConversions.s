@@ -17,7 +17,7 @@
 
 # Create a function miles2kilometer that takes a number of miles and returns the number of kilometers
 # The function will multiply the number of miles by 161 and then divide by 100 to get the number of kilometers
-# This is done for simplicity and to avoid using floating point numbers, we would achieve greater precision by multiplying by 1.61
+# This is done for simplicity and to avoid using floating point numbers, we would achieve greater precision by multiplying by 1610 and dividing by 1000
 
 miles2kilometer:
 
@@ -55,7 +55,7 @@ kph:
 
     // Convert miles to kilometers using miles2kilometer function
     // The input miles is in r0
-    LDR r2, =inputHours // move the second input value, hours, into inputHours
+    LDR r2, =inputHours // move the second input value, hours, into inputHours so it's not overwritten
     STR r1, [r2] // Store the second input value (hours) in inputHours
     BL miles2kilometer // result will be in r0
 
