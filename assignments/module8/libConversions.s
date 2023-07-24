@@ -9,10 +9,11 @@
 
 .global miles2kilometer
 .global kph
-
-.text
+.global CToF
+.global InchesToFt
 
 # START miles2kilometer
+.text
 
 # Create a function miles2kilometer that takes a number of miles and returns the number of kilometers
 # The function will multiply the number of miles by 161 and then divide by 100 to get the number of kilometers
@@ -72,3 +73,57 @@ kph:
 .data
     inputHours: .word 0
 # END kph
+
+# START CToF
+.text
+
+# Create a function CToF that takes a celsius value and outputs fahrenheit
+
+CToF:
+
+    # Push the stack
+    SUB sp, sp, #4 
+    STR lr, [sp, #0] 
+
+    # Convert the input to Fahrenheit
+
+    # Multiply input value in r0 by 9
+    MOV r1, #9
+    MUL r0, r0, r1
+
+    # divide by 5
+    MOV r1, #5
+    BL __aeabi_idiv // divides value in r0 by 5 and stores quotient in r0
+
+    # Add 32
+    ADD r0, r0, #32 // Add 32 to the quotient and store the result in r0
+
+    # Pop the stack and return
+    LDR lr, [sp, #0] 
+    ADD sp, sp, #4 
+    MOV pc, lr 
+.data
+# END CToF
+
+# START InchesToFt
+.text
+
+# Create a function InchesToFt that takes a number of inches and returns the number of feet
+
+InchesToFt:
+
+    # Push the stack
+    SUB sp, sp, #4 
+    STR lr, [sp, #0] 
+
+     # Convert inches to feet and store remainder
+    MOV r1, #12
+    BL __aeabi_idivmod // will store quotient in r0, remainder in r1
+
+    # Pop the stack and return
+    LDR lr, [sp, #0] 
+    ADD sp, sp, #4 
+    MOV pc, lr 
+
+.data
+# END InchesToFt

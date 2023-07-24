@@ -1,11 +1,12 @@
 # Program Name: mainMilesToKilometersAndKph.s
 # Author: Karnika Arora
 # Date: 07/23/2023
-# Module 8 Assignment
+# Module 8 Assignment #1
 # Purpose: Use functions from libConversions.s to convert miles to kilometers, and miles and hours to kilometers per hour
 # Inputs: miles, hours
 # Outputs: miles, miles per hour
 
+.text
 .global main
 main:
     // Push the stack
