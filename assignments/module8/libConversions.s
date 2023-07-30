@@ -4,8 +4,7 @@
 # Module 8 Assignment
 # Purpose: Create a library of functions for use by other programs
 # Functions: miles2kilometer(int miles), kph(int hours, int miles)
-# Inputs: (when applicable)
-# Outputs: (when applicable)
+
 
 .global miles2kilometer
 .global kph
