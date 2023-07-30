@@ -28,6 +28,7 @@ main:
 
     // Call logicalCheckCharacter function
     LDR r1, =inputValue
+    LDR r1, [r1]
     BL logicalCheckCharacter
 
     // Print the result
@@ -42,11 +43,11 @@ main:
     MOV pc, lr 
 
 .data
-    prompt: .asciz "Enter a hexadecimal value: "
-    inputFormat: .asciz "%x"
+    prompt: .asciz "Enter a value: "
+    inputFormat: .asciz "%s"
     inputValue: .word 0
-    resultChar: .asciz "The value is a character."
-    resultNotChar: .asciz "The value is not a character."
+    resultChar: .asciz "The value is a character.\n"
+    resultNotChar: .asciz "The value is not a character.\n"
 
 
 # END MAIN FUNCTION
@@ -71,15 +72,15 @@ logicalCheckCharacter:
     AND r2, r2, r3 // if r1 is between 0x41 and 0x5a, r2 is set to True (this is the hex range for lowercase characters)
 
     // Next, check if r1 is a lowercase character. The logical value will be stored in r3
-    MOV r0, #0
-    CMP r1, #0x61 // this is the start of the hex range for lowercase characters
-    ADDGE r3, #1
-
     MOV r3, #0
+    CMP r1, #0x61 // this is the start of the hex range for lowercase characters
+    ADDGE r3, #1 // set r3 to true if r1 is greater than or equal to 0x61
+
+    MOV r0, #0
     CMP r1, #0x7A
-    ADDLE r0, #1
+    ADDLE r0, #1 // set r0 to true if r1 is less than or equal to 0x7A
     AND r3, r3, r0 // if true r1 is lowercase
-    OR r2,r2,r3 // if true r1 is a letter
+    ORR r2, r2, r3 // if true r1 is a character, return value will be in r2
 
     # Pop the stack and return
     LDR lr, [sp, #0] 
