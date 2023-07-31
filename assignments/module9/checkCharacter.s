@@ -61,7 +61,7 @@ checkCharacter:
         B notChar
     checkLteUpper:
         CMP r1, #0x5A
-        BLE checkGteLower
+        BGT checkGteLower
             // if it's not less than or equal to 0x5A, it's not a character
             B isChar
     checkGteLower:
