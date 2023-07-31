@@ -7,7 +7,7 @@
 #   The function should compare the 3 values, and return the largest.  
 #   Be sure to use the ABI standards for all arguments and return values.  
 #   Write a program to prompt for 3 values, call this function to the find the maximum value, and print out the maximum value.  Follow proper style for assembly.
-# Functions: main, findMaxOf3
+# Functions: main, findMaxOf3(int val1, int val2, int val3) => int maxVal
 
 .global main
 .global findMaxOf3

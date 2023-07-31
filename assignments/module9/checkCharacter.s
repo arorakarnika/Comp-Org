@@ -1,16 +1,17 @@
 # Program Name: checkCharacter.s
 # Author: Karnika Arora
 # Date: 07/30/2023
-# Module 9 Assignment #1
+# Module 9 Assignment #1 b) - check without logical values
 # Purpose: Write and test a function to  check if a user input value is a character or not.  Implement it in two ways:
 #           - As a logical variable.
 #           - Any way that does not use logical values.
-# Functions: logicalCheckCharacter, checkCharacter
+# Functions: checkCharacter, main
 # Pseudocode: if ((r1>=0x41 && r1 =< 0x5a) || (r1>=0x61 && r1 <=0x7a)) - first condition is uppercase chars, second is lowercase chars
 
-.global logicalCheckCharacter
 .global main
-# START MAIN FUNCTION
+.global checkCharacter
+
+# START main FUNCTION
 .text
 main:
     # Push the stack
@@ -26,15 +27,12 @@ main:
     LDR r1, =inputValue
     BL scanf
 
-    // Call logicalCheckCharacter function
+    // Call CheckCharacter function
     LDR r1, =inputValue
     LDR r1, [r1]
-    BL logicalCheckCharacter
+    BL checkCharacter
 
-    // Print the result
-    CMP r2, #1 // check if the response from logicalCheckCharacter is true
-    LDRNE r0, =resultNotChar // if not, print that the value is not a character
-    LDREQ r0, =resultChar // if true, print that the value is a character
+    // Print the result: r0 will have the result string to be printed!
     BL printf
 
     # Pop the stack and return
@@ -46,41 +44,47 @@ main:
     prompt: .asciz "Enter a value: "
     inputFormat: .asciz "%s"
     inputValue: .word 0
-    resultChar: .asciz "The value is a character.\n"
-    resultNotChar: .asciz "The value is not a character.\n"
 
+# END main FUNCTION
 
-# END MAIN FUNCTION
-
-# START logicalCheckCharacter FUNCTION
+# START checkCharacter FUNCTION
 .text
-logicalCheckCharacter:
-// Inputs: r1 - the value to check if it's a character or not
-
+checkCharacter:
     # Push the stack
     SUB sp, sp, #4 
     STR lr, [sp, #0] 
-    
-    // First check if r1 is an uppercase character. The logical value will be stored in r2
-    MOV r2, #0
+
+    // First check if r1 is an uppercase character
     CMP r1, #0x41
-    ADDGE r2, #1 // if r1 is greater than or equal to 0x41, bit 0 is changed to 1 to represent a true value
+    BGE checkLteUpper
+        // if it's not greater than or equal to 0x41, it's not a character
+        B notChar
+    checkLteUpper:
+        CMP r1, #0x5A
+        BLE checkGteLower
+            // if it's not less than or equal to 0x5A, it's not a character
+            B isChar
+    checkGteLower:
+        CMP r1, #0x61
+        BGE checkLteLower
+            // if it's not greater than or equal to 0x61, it's not a character
+            B notChar
+    checkLteLower:
+        CMP r1, #0x7A
+        BLE isChar
+            // if it's not less than or equal to 0x7A, it's not a character
+            B notChar
 
-    MOV r3, #0
-    CMP r1, #0x5A
-    ADDLE r3, #1
-    AND r2, r2, r3 // if r1 is between 0x41 and 0x5a, r2 is set to True (this is the hex range for lowercase characters)
-
-    // Next, check if r1 is a lowercase character. The logical value will be stored in r3
-    MOV r3, #0
-    CMP r1, #0x61 // this is the start of the hex range for lowercase characters
-    ADDGE r3, #1 // set r3 to true if r1 is greater than or equal to 0x61
-
-    MOV r0, #0
-    CMP r1, #0x7A
-    ADDLE r0, #1 // set r0 to true if r1 is less than or equal to 0x7A
-    AND r3, r3, r0 // if true r1 is lowercase
-    ORR r2, r2, r3 // if true r1 is a character, return value will be in r2
+    isChar:
+        LDR r0, =resultChar
+        B endCheckCharacter
+    
+    notChar:
+        LDR r0, =resultNotChar
+        B endCheckCharacter
+    
+    endCheckCharacter:
+    // The function will return either resultChar or resultNotChar in r0 - this can be passed directly to printf
 
     # Pop the stack and return
     LDR lr, [sp, #0] 
@@ -88,5 +92,7 @@ logicalCheckCharacter:
     MOV pc, lr 
 
 .data
+    resultChar: .asciz "The value is a character.\n"
+    resultNotChar: .asciz "The value is not a character.\n"
 
-# END logicalCheckCharacter FUNCTION
+# END checkCharacter FUNCTION
