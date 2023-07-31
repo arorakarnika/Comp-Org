@@ -20,14 +20,15 @@ echo "
 echo "-------------------------------------------- All Tests Complete for checkCharacterLogical -----------------------------------------------------"
 
 
-echo "------------------------------------ Running checkCharacter with test cases: A, b, f, h, Z, 55 ----------------------------------------------"
+echo "------------------------------------ Running checkCharacter with test cases: A, b, f, 8, Z, 55, z ----------------------------------------------"
 
 ../../runTests.sh -n checkCharacter -t "A"
 ../../runTests.sh -n checkCharacter -t "b"
 ../../runTests.sh -n checkCharacter -t "f"
-../../runTests.sh -n checkCharacter -t "h"
+../../runTests.sh -n checkCharacter -t "8"
 ../../runTests.sh -n checkCharacter -t "Z"
 ../../runTests.sh -n checkCharacter -t "55"
+../../runTests.sh -n checkCharacter -t "z"
 
 echo "-------------------------------------------- All Tests Complete for checkCharacter -----------------------------------------------------"
 
