@@ -1,12 +1,11 @@
 # Program Name: checkCharacter.s
 # Author: Karnika Arora
 # Date: 07/30/2023
-# Module 9 Assignment #1
+# Module 9 Assignment #1 a) As a logical variable.
 # Purpose: Write and test a function to  check if a user input value is a character or not.  Implement it in two ways:
 #           - As a logical variable.
 #           - Any way that does not use logical values.
 # Functions: logicalCheckCharacter, main
-# Pseudocode: if ((r1>=0x41 && r1 =< 0x5a) || (r1>=0x61 && r1 <=0x7a)) - first condition is uppercase chars, second is lowercase chars
 
 .global logicalCheckCharacter
 .global main
@@ -17,21 +16,21 @@ main:
     SUB sp, sp, #4 
     STR lr, [sp, #0] 
 
-    // Prompt for input value
+    # Prompt for input value
     LDR r0, =prompt
     BL printf
 
-    // Get input value
+    # Get input value
     LDR r0, =inputFormat
     LDR r1, =inputValue
     BL scanf
 
-    // Call logicalCheckCharacter function
+    # Call logicalCheckCharacter function
     LDR r1, =inputValue
     LDR r1, [r1]
     BL logicalCheckCharacter
 
-    // Print the result
+    # Print the result
     CMP r2, #1 // check if the response from logicalCheckCharacter is true
     LDRNE r0, =resultNotChar // if not, print that the value is not a character
     LDREQ r0, =resultChar // if true, print that the value is a character
@@ -54,15 +53,17 @@ main:
 # END MAIN FUNCTION
 
 # START logicalCheckCharacter FUNCTION
+# Pseudocode: if ((r1>=0x41 && r1 =< 0x5a) || (r1>=0x61 && r1 <=0x7a)) - first condition is uppercase chars, second is lowercase chars
+
 .text
 logicalCheckCharacter:
-// Inputs: r1 - the value to check if it's a character or not
+# Inputs: r1 - the value to check if it's a character or not
 
     # Push the stack
     SUB sp, sp, #4 
     STR lr, [sp, #0] 
     
-    // First check if r1 is an uppercase character. The logical value will be stored in r2
+    # First check if r1 is an uppercase character. The logical value will be stored in r2
     MOV r2, #0
     CMP r1, #0x41
     ADDGE r2, #1 // if r1 is greater than or equal to 0x41, bit 0 is changed to 1 to represent a true value
@@ -72,7 +73,7 @@ logicalCheckCharacter:
     ADDLE r3, #1
     AND r2, r2, r3 // if r1 is between 0x41 and 0x5a, r2 is set to True (this is the hex range for lowercase characters)
 
-    // Next, check if r1 is a lowercase character. The logical value will be stored in r3
+    # Next, check if r1 is a lowercase character. The logical value will be stored in r3
     MOV r3, #0
     CMP r1, #0x61 // this is the start of the hex range for lowercase characters
     ADDGE r3, #1 // set r3 to true if r1 is greater than or equal to 0x61

@@ -8,6 +8,13 @@
 #           - Else calculate a grade as 90-100 as A, 80-90 as B, 70-80 as C, else F.
 #           - Print out the student's name and grade.
 # Functions: main, calculateGrades
+# Inputs:
+#   - Student name
+#   - Student average
+# Outputs:
+#   - Student name
+#   - Student grade: A, B, C or F
+#   - Error message if average is not between 0 and 100 (inclusive)
 
 .global main
 .global calculateGrades
@@ -19,30 +26,30 @@ main:
     SUB sp, sp, #4 
     STR lr, [sp, #0] 
 
-    // Prompt for name input
+    # Prompt for name input
     LDR r0, =promptName
     BL printf
 
-    // Read input name
+    # Read input name
     LDR r0, =inputFormatName
     LDR r1, =inputName
     BL scanf
 
-    // Prompt for average input
+    # Prompt for average input
     LDR r0, =promptAverage
     BL printf
 
-    // Read input average
+    # Read input average
     LDR r0, =inputFormatAverage
     LDR r1, =inputAverage
     BL scanf
 
-    // Call CalculateGrades function
+    # Call CalculateGrades function
     LDR r1, =inputAverage
     BL calculateGrades
 
-    // Print grade
-    MOV r2, r0 // move grade from calculateGrades function into r2
+    # Print grade
+    MOV r2, r0 // move grade from calculateGrades function result into r2
     LDR r0, =resultOutput
     LDR r1, =inputName
     BL printf
@@ -70,7 +77,7 @@ calculateGrades:
     SUB sp, sp, #4 
     STR lr, [sp, #0] 
 
-    // Check if average is valid, raise an error if not
+    # Check if average is valid, raise an error if not
     MOV r0, #0
     LDR r1, [r1] // this is the inputAverage
     CMP r1, #0
@@ -89,17 +96,17 @@ calculateGrades:
         B exit
     
     endError:
-    // Calculate grade if grade is valid
-    MOV r0, #0 // logical value set to true if the grade is A
+    
+    # Calculate grade if grade is valid
     CMP r1, #90
     BGE gradeA
-        // Check next grade tier - B
+        # Check next grade tier - B
         CMP r1, #80
         BGE gradeB
-            // If false, check next grade tier - C
+            # If false, check next grade tier - C
             CMP r1, #70
             BGE gradeC
-                // if false, grade is F
+                # If false, grade is F
                 CMP r1, #70
                 BLE gradeF
 
@@ -123,6 +130,8 @@ calculateGrades:
         LDR r2, =grade
         STR r0, [r2]
         B endGrade
+
+    # End of grade calculation: move grade into r0 before returning
     endGrade:
         LDR r0, =grade
 
@@ -135,4 +144,6 @@ calculateGrades:
 .data
     errorOutput: .asciz "Error: Average must be between 0 and 100. You entered %d\n"
     grade: .word 0
-@ # END calculateGrades FUNCTION
+
+# END calculateGrades FUNCTION
+

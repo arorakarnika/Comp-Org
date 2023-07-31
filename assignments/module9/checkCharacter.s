@@ -6,7 +6,7 @@
 #           - As a logical variable.
 #           - Any way that does not use logical values.
 # Functions: checkCharacter, main
-# Pseudocode: if ((r1>=0x41 && r1 =< 0x5a) || (r1>=0x61 && r1 <=0x7a)) - first condition is uppercase chars, second is lowercase chars
+
 
 .global main
 .global checkCharacter
@@ -18,21 +18,21 @@ main:
     SUB sp, sp, #4 
     STR lr, [sp, #0] 
 
-    // Prompt for input value
+    # Prompt for input value
     LDR r0, =prompt
     BL printf
 
-    // Get input value
+    # Get input value
     LDR r0, =inputFormat
     LDR r1, =inputValue
     BL scanf
 
-    // Call CheckCharacter function
+    # Call CheckCharacter function
     LDR r1, =inputValue
     LDR r1, [r1]
     BL checkCharacter
 
-    // Print the result: r0 will have the result string to be printed!
+    # Print the result: r0 will have the result string to be printed!
     LDR r1, =inputValue
     BL printf
 
@@ -49,31 +49,34 @@ main:
 # END main FUNCTION
 
 # START checkCharacter FUNCTION
+# Pseudocode: if ((r1>=0x41 && r1 =< 0x5a) || (r1>=0x61 && r1 <=0x7a)) - first condition is uppercase chars, second is lowercase chars
+# Implement wih branching only: no logical values
+
 .text
 checkCharacter:
     # Push the stack
     SUB sp, sp, #4 
     STR lr, [sp, #0] 
 
-    // First check if r1 is an uppercase character
+    # First check if r1 is an uppercase character
     CMP r1, #0x41
     BGE checkLteUpper
-        // if it's not greater than or equal to 0x41, it's not a character
+        # if it's not greater than or equal to 0x41, it's not a character
         B notChar
     checkLteUpper:
         CMP r1, #0x5A
         BGT checkGteLower
-            // if it's not less than or equal to 0x5A, it's not a character
+            # if it's not less than or equal to 0x5A, it's not a character
             B isChar
     checkGteLower:
         CMP r1, #0x61
         BGE checkLteLower
-            // if it's not greater than or equal to 0x61, it's not a character
+            # if it's not greater than or equal to 0x61, it's not a character
             B notChar
     checkLteLower:
         CMP r1, #0x7A
         BLE isChar
-            // if it's not less than or equal to 0x7A, it's not a character
+            # if it's not less than or equal to 0x7A, it's not a character
             B notChar
 
     isChar:
@@ -85,7 +88,7 @@ checkCharacter:
         B endCheckCharacter
     
     endCheckCharacter:
-    // The function will return either resultChar or resultNotChar in r0 - this can be passed directly to printf
+    # The function will return either resultChar or resultNotChar in r0 - this can be passed directly to printf
 
     # Pop the stack and return
     LDR lr, [sp, #0] 
