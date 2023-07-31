@@ -59,7 +59,7 @@ main:
     inputName: .space 40
     inputFormatAverage: .asciz "%d"
     inputAverage: .word 0   
-    resultOutput: .asciz "Student %s has a grade of %s\n"
+    resultOutput: .asciz "The Student %s has a grade of %s\n"
 
 # END MAIN FUNCTION
 
