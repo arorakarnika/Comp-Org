@@ -33,6 +33,7 @@ main:
     BL checkCharacter
 
     // Print the result: r0 will have the result string to be printed!
+    LDR r1, =inputValue
     BL printf
 
     # Pop the stack and return
@@ -92,7 +93,7 @@ checkCharacter:
     MOV pc, lr 
 
 .data
-    resultChar: .asciz "The value is a character.\n"
-    resultNotChar: .asciz "The value is not a character.\n"
+    resultChar: .asciz "The value %s is a character.\n"
+    resultNotChar: .asciz "The value %s is not a character.\n"
 
 # END checkCharacter FUNCTION

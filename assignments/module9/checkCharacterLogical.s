@@ -35,6 +35,7 @@ main:
     CMP r2, #1 // check if the response from logicalCheckCharacter is true
     LDRNE r0, =resultNotChar // if not, print that the value is not a character
     LDREQ r0, =resultChar // if true, print that the value is a character
+    LDR r1, =inputValue
     BL printf
 
     # Pop the stack and return
@@ -46,8 +47,8 @@ main:
     prompt: .asciz "Enter a value: "
     inputFormat: .asciz "%s"
     inputValue: .word 0
-    resultChar: .asciz "The value is a character.\n"
-    resultNotChar: .asciz "The value is not a character.\n"
+    resultChar: .asciz "The value %s is a character.\n"
+    resultNotChar: .asciz "The value %s is not a character.\n"
 
 
 # END MAIN FUNCTION
