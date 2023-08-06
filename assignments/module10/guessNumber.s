@@ -47,7 +47,7 @@ main:
     BL scanf
 
     # Store the number in r4
-    LDR r4, =guessNum
+    LDR r4, =randNum
     LDR r4, [r4]
 
     # Check for errors
@@ -118,7 +118,7 @@ main:
     maxPrompt: .asciz "Enter the maximum value for the number you will choose:"
     maxFormat: .asciz "%d"
     maxNum: .word 0
-    randPrompt: .asciz "Pick a random number between 1 and %d:"
+    randPrompt: .asciz "Pick a random number between 1 and %d:\n"
     randFormat: .asciz "%d"
     randNum: .word 0
     printError: .asciz "The number you entered is outside the range. You entered %d, the number should be between 1 and %d."
