@@ -56,11 +56,12 @@ main:
             BEQ isPrime
 
             MOV r0, r4
-            LDR r1, [r5]
+            MOV r1, r5
             BL __aeabi_idivmod
             CMP r1, #0 // check if the remainder is 0
             BEQ notPrime
-            ADD r5, r5, #1 // increment the counter and divide by the next number
+            ADD r1, r1, #1 // increment the counter and divide by the next number
+            MOV r5, r1
             B checkPrime
  
     # Print Error Message   

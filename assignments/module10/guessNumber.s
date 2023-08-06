@@ -28,7 +28,7 @@ main:
 
     # Read in the max value
     LDR r0, =maxFormat
-    LDR r1, -maxNum
+    LDR r1, =maxNum
     BL scanf
 
     # Store the max value in r5
@@ -65,17 +65,20 @@ main:
 
     startSearchLoop:
         # Pick a random number between the starting number and maxNum.
-        LDR r0, [r6]
-        LDR r1, [r7]
+        MOV r0, r6
+        MOV r1, r7
         BL rand
 
         # Store our guess in r8
         MOV r8, r0
 
         # Print the random number
-        LDR r1, [r8]
+        MOV r1, r8
         LDR r0, =printGuess
         BL printf
+
+        # Move our guess back into r8
+        MOV r8, r1
 
         # Read in user response
         LDR r0, =guessFormat
