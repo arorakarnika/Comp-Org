@@ -6,6 +6,9 @@
 #   Your program should print out "Number n is prime" if the number is prime, and "Number n is not prime" if the number is not prime. 
 #   The user should be able to enter a "-1" to end the problem. 
 #   It should print an error if 0, 1, 2 or any negative number other than -1 are entered.
+# Functions: main, checkPrime
+#   - main: Prompts the user for a number, and determines if that number is prime or not. Prints an error if 0, 1, 2 or any negative number other than -1 are entered. The user should be able to enter a "-1" to end the problem.
+#   - checkPrime: Checks if the number is prime or not. Returns 1 if the number is prime, 0 if the number is not prime.
 
 .global main
 .global checkPrime
@@ -95,6 +98,8 @@ main:
 # End main function
 
 # Start checkPrime function
+# Purpose: a helper function to check if the number is prime or not, returns a boolean value: 0 if the number is not prime, 1 if the number is prime
+# Parameters: r0 = number to be checked
 .text
 checkPrime:
     # Program dictionary
@@ -133,7 +138,6 @@ checkPrime:
         B endCheckPrimeFunction
 
     endCheckPrimeFunction:
-
 
     # Pop the stack and return
     LDR lr, [sp, #0] 
