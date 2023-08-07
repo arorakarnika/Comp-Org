@@ -84,7 +84,20 @@ main:
         BL guessNumber
 
         # Store the guessed number in r8
-        MOV r8, r0
+        CMP r8, r0
+        # if the old guess is the same as the new guess, add 1 to the guess if the user said it is higher to return the max value as a possible guess
+        # if the user said it is lower, subtract 1 from the guess to return the min value as a possible guess
+        BEQ sameGuess
+            MOV r8, r0
+            B endSameGuess
+        sameGuess:
+            LDR r1, =guessNum
+            LDR r1, [r1]
+            CMP r1, #1
+            ADDEQ r8, r8, #1
+            CMP r1, #2
+            SUBEQ r8, r8, #1
+        endSameGuess:
 
         # Reset the start and end of the search - the guessNumber function will return the start and end of the search in r1 and r2
         MOV r6, r1
