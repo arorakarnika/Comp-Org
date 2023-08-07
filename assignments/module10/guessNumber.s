@@ -58,12 +58,11 @@ main:
     # Check for errors with the input
     CMP r4, #1
     BLT error
-        B endError
-    LDR r1, =maxNum
-    LDR r1, [r1]
-    CMP r4, r1
-    BGT error
-        B endError
+        LDR r1, =maxNum
+        LDR r1, [r1]
+        CMP r4, r1
+        BGT error
+            B endError
 
     error:
         LDR r0, =printError
