@@ -28,14 +28,19 @@ main:
 
     # Call the recursiveMul function
     LDR r0, =num1
+    LDR r0, [r0]
     LDR r1, =num2
+    LDR r1, [r1]
+    MOV r2, #0 // initialize a result variable to add to in the recursiveMul function
     BL recursiveMul // result in r0
 
     # Print the result
     MOV r3, r0
     LDR r0, =result
     LDR r1, =num1
+    LDR r1, [r1]
     LDR r2, =num2
+    LDR r2, [r2]
     BL printf
 
     # Pop the stack
@@ -70,9 +75,9 @@ main:
 .text
 recursiveMul:
     # Program dictionary:
-    # r4 = num1
-    # r5 = num2
-    # r6 = result
+    # r0 = num1
+    # r1 = num2
+    # r2 = result (starts at 0)
 
     # Push the stack
     SUB sp, sp, #4 
@@ -84,11 +89,12 @@ recursiveMul:
         B elseLoop
     elseLoop:
     SUB r1, r1, #1
-    ADD r0, r0, r0
+    ADD r2, r2, r0
     BL recursiveMul
     endElseLoop:
     
     Return:
+    MOV r0, r2 // move the result into r0 before returning
     # Pop the stack
     LDR lr, [sp, #0] 
     ADD sp, sp, #4 
