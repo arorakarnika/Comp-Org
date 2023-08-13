@@ -30,6 +30,13 @@ main:
     LDR r0, [r0]
     BL calculateFibonacci
 
+    # Print result
+    MOV r2, r0
+    LDR r0, =resultPrompt
+    LDR r1, =inputNum
+    LDR r1, [r1]
+    BL printf
+
     # Pop the stack
     LDR lr, [sp, #0] 
     ADD sp, sp, #4 
@@ -87,7 +94,7 @@ calculateFibonacci:
     returnOne:
     MOV r0, #1
     B returnResult
-    
+
     returnResult:
     # Pop the stack
     LDR lr, [sp, #0] 
