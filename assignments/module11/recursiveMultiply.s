@@ -5,9 +5,11 @@
 # Purpose: Implement a program to calculate multiplication using successive addition with recursion. For example, 5x4 is 5+5+5+5.  This can be defined recursively as:
 #            Mult(m, n) = if n is 1,  return m
 #                              else return m + Mult(m, n-1)
+# Functions: main, recursiveMul
+#   - main: prompts the user for two numbers, calls recursiveMul, and prints the result
+#   - recursiveMul(int num1, int num2, int result): multiplies two numbers using successive addition with recursion
 
 .global main
-.global recursiveMul
 
 # START MAIN FUNCTION
 .text
@@ -59,7 +61,7 @@ main:
 
 # START recursiveMul FUNCTION
 # Parameters: r0 = num1, r1 = num2
-# Pseudocode (python):
+# Python code:
 @ def recursiveMul(num1, num2):
 @     if num2 == 0:
 @         return 0
